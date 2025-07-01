@@ -1,0 +1,387 @@
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- CSS Variables: New Neon/Gradient Theme --- */
+:root {
+    --bg-color: #f4f7ff;
+    --text-color: #333;
+    --dark-text: #0a0a23;
+    --neon-color: #ff00ff; /* Magenta */
+    --neon-glow-color: #ff00ff80;
+    --secondary-neon: #00ffff; /* Cyan */
+    --font-family: 'Poppins', sans-serif;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --border-radius: 16px;
+}
+
+/* --- Global Reset & Base Styles --- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* Animated Gradient Background */
+    background: linear-gradient(315deg, #e0c3fc, #8ec5fc, #fbc2eb, #a6c1ee);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Utility Classes & Base Elements --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.section { padding: 8rem 0; }
+h1, h2, h3 { font-weight: 600; color: var(--dark-text); margin-bottom: 1rem; line-height: 1.2; }
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; }
+p { max-width: 65ch; margin: 0 auto; }
+.section-intro { margin-bottom: 4rem; text-align: center; }
+.section-intro p { color: #555; }
+.reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* --- Header & Glassmorphism Navbar --- */
+.main-header {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1200px;
+    z-index: 1000;
+    transition: all 0.4s ease;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+}
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--dark-text);
+    text-decoration: none;
+}
+.nav-links { display: flex; list-style: none; gap: 2.5rem; }
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 8px;
+    transition: color 0.3s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--neon-color); }
+.nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background-color: var(--neon-color);
+    transition: width 0.4s ease;
+}
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+/* --- Hero Section --- */
+.hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    padding-top: 100px; 
+}
+.hero::before {
+    content: ''; 
+    position: absolute; 
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('images/hero-background.jpg') no-repeat center center/cover !important;
+    z-index: -2;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(315deg, #e0c3fc, #8ec5fc, #fbc2eb, #a6c1ee);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    opacity: 0.5; 
+    z-index: -1;
+}
+.hero-content h1 { 
+    color: white; 
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6); 
+}
+.hero-content p { 
+    color: #eee; 
+    font-size: 1.25rem; 
+    font-weight: 300; 
+    margin-bottom: 2rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6); 
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    background: var(--neon-color);
+    color: white;
+    padding: 14px 35px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--neon-glow-color);
+}
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px var(--neon-glow-color);
+}
+
+/* --- Glassmorphism Destination Cards --- */
+.destination-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
+.destination-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.destination-card:hover { transform: translateY(-10px); }
+.card-img-wrapper {
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+}
+.destination-card-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.destination-card:hover .destination-card-img { transform: scale(1.1); }
+.destination-card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+.card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.1);
+    gap: 1rem; /* <-- Button spacing fix */
+}
+.price { font-size: 1.5rem; font-weight: 700; color: var(--dark-text); }
+
+/* --- Booking Modal & Contact Form --- */
+.contact-form-wrapper { /* Contact form specific wrapper */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    margin: 0 auto;
+}
+.modal-overlay { /* Modal specific styles */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2000;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
+    
+    /* Centering Fix */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Background Haze Fix */
+    background: rgba(244, 247, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-container { 
+    transform: scale(0.9); transition: transform 0.4s ease; width: 90%; max-width: 500px;
+    
+    /* Background Fix */
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+.modal-overlay.active .modal-container { transform: scale(1); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.modal-header h2 { margin: 0; font-size: 1.8rem; }
+.close-modal {
+    background: none; border: none; font-size: 2rem; color: var(--text-color);
+    cursor: pointer; transition: color 0.3s, transform 0.3s;
+}
+.close-modal:hover { color: var(--neon-color); transform: rotate(90deg); }
+
+/* --- Forms --- */
+.form-group { position: relative; margin-bottom: 1.5rem; }
+.form-input {
+    width: 100%; padding: 14px 15px;
+    background-color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px; color: var(--text-color); font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+.form-input:focus { outline: none; border-color: var(--neon-color); }
+.form-label {
+    position: absolute; top: 15px; left: 15px; color: #777;
+    pointer-events: none; transition: all 0.3s ease;
+    background: white; /* Solid background for label */
+}
+.form-input:focus ~ .form-label, .form-input:not(:placeholder-shown) ~ .form-label {
+    top: -10px; left: 10px; font-size: 0.85rem; padding: 0 5px; color: var(--neon-color);
+}
+#form-message, #booking-form-message {
+    text-align: center; padding: 1rem; border-radius: 8px;
+    margin-top: 1rem; display: none; color: white;
+}
+#form-message.success, #booking-form-message.success { background-color: #2a9d8f; }
+#form-message.error, #booking-form-message.error { background-color: #e76f51; }
+
+/* --- Bookings Page (Table) --- */
+.bookings-table-wrapper {
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+}
+.bookings-table { width: 100%; border-collapse: collapse; }
+.bookings-table th, .bookings-table td { padding: 1rem 1.5rem; text-align: left; }
+.bookings-table thead { border-bottom: 2px solid var(--secondary-neon); }
+.bookings-table tbody tr { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.bookings-table tbody tr:last-child { border-bottom: none; }
+.bookings-table tbody tr:hover { background: rgba(255, 255, 255, 0.3); }
+
+/* --- About Page Styles --- */
+.about-hero {
+    padding: 10rem 2rem 8rem;
+    text-align: center;
+    color: var(--dark-text);
+    
+}
+.about-hero .subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 600px;
+}
+.two-column {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+.two-column .column-text {
+    flex: 1 1 400px;
+}
+.two-column .column-image {
+    flex: 1 1 400px; /* Keep existing flex properties */
+    height: 300px; /* Set a fixed height - adjust this value if needed */
+    overflow: hidden; /* Hide any part of the image that overflows the container */
+}
+
+.two-column .column-image img {
+    width: 100%;
+    height: 100%; /* Make the image fill the container */
+    object-fit: cover; /* Crop the image to fit the container's aspect ratio */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transform: scale(1.0;); /* Revert the previous zoom */
+}
+@media (max-width: 900px) {
+    .two-column {
+        flex-direction: column-reverse;
+    }
+}
+.section-highlight {
+    background: rgba(255, 255, 255, 0.3);
+}
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.philosophy-item {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+.philosophy-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+.stats-section .container {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.stat-item .stat-number {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: var(--neon-color);
+    line-height: 1;
+    text-shadow: 0 0 10px var(--neon-glow-color);
+}
+.stat-item .stat-label {
+    display: block;
+    font-size: 1.1rem;
+    color: #444;
+    margin-top: 0.5rem;
+}
+
+/* --- Footer --- */
+.main-footer { text-align: center; padding: 3rem 1rem; margin-top: 4rem; color: var(--dark-text); }
+
+
+/* ============================================= */
+/* == Styles for Cancel Booking Button       == */
+/* ============================================= */
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #e5383b; /* Red on hover */
+    transform: scale(1.05);
+}
+
+.btn-cancel:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}

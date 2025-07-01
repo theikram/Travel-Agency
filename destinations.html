@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations - Voyage Paradise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="page-destinations">
+
+    <header class="main-header">
+        <nav class="navbar">
+             <a href="index.html" class="nav-logo">Voyage Paradise</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="bookings.html">My Bookings</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-intro reveal">
+                    <h2>Choose Your Paradise</h2>
+                    <p>Each destination is a hand-picked gem, chosen for its unique beauty and unforgettable experiences. Find where you belong.</p>
+                </div>
+                <div class="destination-grid">
+                    <!-- Destinations load here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Booking Modal Structure -->
+    <div class="modal-overlay" id="booking-modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modal-title">Book Your Trip</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="booking-form" novalidate>
+                <input type="hidden" id="booking-destination-id" name="destination_id">
+                <div class="form-group">
+                    <input type="text" id="booking-name" name="name" class="form-input" placeholder=" " required>
+                    <label for="booking-name" class="form-label">Full Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="booking-email" name="email" class="form-input" placeholder=" " required>
+                    <label for="booking-email" class="form-label">Email Address</label>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="booking-travel-date" name="travel_date" class="form-input" placeholder=" " required>
+                    <label for="booking-travel-date" class="form-label">Preferred Travel Date</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="booking-travelers" name="travelers" class="form-input" min="1" value="1" placeholder=" " required>
+                    <label for="booking-travelers" class="form-label">Number of Travelers</label>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Confirm Booking</button>
+            </form>
+            <div id="booking-form-message"></div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Voyage Paradise. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
