@@ -1,9 +1,18 @@
 <?php
-// --- Database Credentials for AwardSpace ---
-$host = 'fdb1033.awardspace.net';
-$user = '4652412_travel';
-$pass = 'pak12345';
-$db   = '4652412_travel';
+// --- Database Credentials ---
+// For XAMPP (default)
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db   = 'travel_db';
+
+/*
+// For AeonFree (example)
+$host = 'sqlXXX.iceiy.com';
+$user = 'icei_XXXXXXXX';
+$pass = 'YOUR_PASSWORD';
+$db   = 'icei_XXXXXXXX_travel';
+*/
 
 // --- Establish Database Connection ---
 $conn = new mysqli($host, $user, $pass, $db);
