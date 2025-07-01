@@ -61,7 +61,7 @@ To run this project locally, follow these steps:
 
       - Open your web browser and navigate to `http://localhost/your-project-folder-name`. The website should now be fully functional.
   
-6. 📸 **Screenshots**
+📸 **Screenshots**
 
 Here are a few glimpses of Voyage Paradise in action.
 
